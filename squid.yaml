@@ -2,10 +2,10 @@ manifestVersion: subsquid.io/v0.1
 name: quest-triple-chain-squid
 version: 1
 description: A squid that indexes USDC transfers on ETH, BSC and Base
-build: 
+build:
 deploy:
   addons:
-    postgres: 
+    postgres:
   processor:
     - name: eth-processor
       cmd:
@@ -23,11 +23,12 @@ deploy:
     cmd:
       - npx
       - squid-graphql-server
-      - '--dumb-cache'
+      - "--subscriptions"
+      - "--dumb-cache"
       - in-memory
-      - '--dumb-cache-ttl'
-      - '1000'
-      - '--dumb-cache-size'
-      - '100'
-      - '--dumb-cache-max-age'
-      - '1000'
+      - "--dumb-cache-ttl"
+      - "1000"
+      - "--dumb-cache-size"
+      - "100"
+      - "--dumb-cache-max-age"
+      - "1000"
