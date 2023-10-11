@@ -1,19 +1,19 @@
 import { TypeormDatabase } from "@subsquid/typeorm-store";
 import { Transfer } from "../model";
 import * as erc20abi from "../abi/erc20";
-import { processor, BASE_USDC_ADDRESS } from "./processor";
+import { processor, POLYGON_USDC_ADDRESS } from "./processor";
 
 processor.run(
   new TypeormDatabase({
     supportHotBlocks: true,
-    stateSchema: "base_processor"
+    stateSchema: "polygon_processor"
   }),
   async (ctx) => {
     const transfers: Transfer[] = [];
     for (let c of ctx.blocks) {
       for (let log of c.logs) {
         if (
-          log.address !== BASE_USDC_ADDRESS ||
+          log.address !== POLYGON_USDC_ADDRESS ||
           log.topics[0] !== erc20abi.events.Transfer.topic
         )
           continue;
@@ -21,7 +21,7 @@ processor.run(
         transfers.push(
           new Transfer({
             id: log.id,
-            network: "base",
+            network: "polygon",
             block: c.header.height,
             timestamp: new Date(c.header.timestamp),
             from,

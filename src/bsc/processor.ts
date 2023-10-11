@@ -11,13 +11,12 @@ import { Store } from "@subsquid/typeorm-store";
 import * as erc20abi from "../abi/erc20";
 
 export const BSC_USDC_ADDRESS =
-  "0x8965349fb649A33a30cbFDa057D8eC2C48AbE2A2".toLowerCase();
+  "0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d".toLowerCase();
 
 export const processor = new EvmBatchProcessor()
   .setDataSource({
-    archive: lookupArchive("binance")
-    // Disabled for quests to avoid DDoSing Ankr :)
-    // chain: "https://rpc.ankr.com/bsc"
+    archive: lookupArchive("binance"),
+    chain: "https://rpc.ankr.com/bsc"
   })
   .setFinalityConfirmation(75)
   .setFields({
@@ -26,7 +25,7 @@ export const processor = new EvmBatchProcessor()
     }
   })
   .setBlockRange({
-    from: 24_111_029
+    from: 22_511_875
   })
   .addLog({
     address: [BSC_USDC_ADDRESS],

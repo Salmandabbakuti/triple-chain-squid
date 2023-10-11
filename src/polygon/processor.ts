@@ -10,14 +10,13 @@ import {
 import { Store } from "@subsquid/typeorm-store";
 import * as erc20abi from "../abi/erc20";
 
-export const BASE_USDC_ADDRESS =
-  "0x951F55f0492a638Ff1d670aCd4B27b51CA0Ad4d1".toLowerCase();
+export const POLYGON_USDC_ADDRESS =
+  "0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359".toLowerCase();
 
 export const processor = new EvmBatchProcessor()
   .setDataSource({
-    archive: lookupArchive("base-goerli")
-    // Disabled for quests to avoid DDoSing Ankr :)
-    // chain: "https://rpc.ankr.com/base"
+    archive: lookupArchive("polygon"),
+    chain: "https://rpc.ankr.com/polygon"
   })
   .setFinalityConfirmation(75)
   .setFields({
@@ -26,10 +25,10 @@ export const processor = new EvmBatchProcessor()
     }
   })
   .setBlockRange({
-    from: 5_918_310
+    from: 38_592_479
   })
   .addLog({
-    address: [BASE_USDC_ADDRESS],
+    address: [POLYGON_USDC_ADDRESS],
     topic0: [erc20abi.events.Transfer.topic]
   });
 
