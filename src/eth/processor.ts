@@ -15,9 +15,8 @@ export const ETH_USDC_ADDRESS =
 
 export const processor = new EvmBatchProcessor()
   .setDataSource({
-    archive: lookupArchive("eth-mainnet")
-    // Disabled for quests to avoid DDoSing Ankr :)
-    // chain: "https://rpc.ankr.com/eth"
+    archive: lookupArchive("eth-mainnet"),
+    chain: "https://rpc.ankr.com/eth"
   })
   .setFinalityConfirmation(75)
   .setFields({
