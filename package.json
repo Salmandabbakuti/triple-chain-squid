@@ -2,9 +2,7 @@
   "name": "squid-evm-template",
   "private": true,
   "scripts": {
-    "codegen": "sqd codegen",
-    "build": "sqd build",
-    "deploy": "sqd deploy --org barriers ."
+    "build": "rm -rf lib && tsc"
   },
   "dependencies": {
     "@subsquid/archive-registry": "^3.2.0",
@@ -18,7 +16,6 @@
     "typeorm": "^0.3.16"
   },
   "devDependencies": {
-    "@subsquid/cli": "^2.5.0",
     "@subsquid/evm-typegen": "^3.2.2",
     "@subsquid/typeorm-codegen": "^1.3.1",
     "@types/node": "^18.16.17",
